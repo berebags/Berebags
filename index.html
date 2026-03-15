@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bere Bags</title>
+
+<style>
+
+body{
+font-family: 'Georgia', serif;
+margin:0;
+background:white;
+color:black;
+}
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+border-bottom:1px solid #eee;
+}
+
+.logo{
+font-size:28px;
+letter-spacing:3px;
+}
+
+nav a{
+margin:15px;
+text-decoration:none;
+color:black;
+font-weight:500;
+}
+
+.cart{
+cursor:pointer;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:42px;
+letter-spacing:2px;
+}
+
+.btn{
+background:#e6d3b3;
+border:none;
+padding:14px 28px;
+cursor:pointer;
+margin-top:20px;
+}
+
+.products{
+padding:60px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+}
+
+.product{
+text-align:center;
+}
+
+.product img{
+width:100%;
+border-radius:5px;
+}
+
+.cart-box{
+position:fixed;
+right:20px;
+top:80px;
+background:white;
+border:1px solid #eee;
+padding:20px;
+width:250px;
+display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">BERE BAGS</div>
+
+<nav>
+<a href="#">Inicio</a>
+<a href="#productos">Productos</a>
+<a href="#contacto">Contacto</a>
+</nav>
+
+<div class="cart" onclick="toggleCart()">
+🛒 Carrito (<span id="count">0</span>)
+</div>
+
+</header>
+
+<section class="hero">
+<h1>Elegancia en cada detalle</h1>
+<p>Carteras · Mini Bags · Billeteras · Accesorios</p>
+<button class="btn">Comprar ahora</button>
+</section>
+
+<section class="products" id="productos">
+
+<div class="grid">
+
+<div class="product">
+<img src="https://via.placeholder.com/250">
+<h3>Cartera Elegance</h3>
+<p>$25</p>
+<button class="btn" onclick="addToCart('Cartera Elegance',25)">Agregar</button>
+</div>
+
+<div class="product">
+<img src="https://via.placeholder.com/250">
+<h3>Mini Bag</h3>
+<p>$20</p>
+<button class="btn" onclick="addToCart('Mini Bag',20)">Agregar</button>
+</div>
+
+<div class="product">
+<img src="https://via.placeholder.com/250">
+<h3>Billetera</h3>
+<p>$15</p>
+<button class="btn" onclick="addToCart('Billetera',15)">Agregar</button>
+</div>
+
+<div class="product">
+<img src="https://via.placeholder.com/250">
+<h3>Pulsera</h3>
+<p>$10</p>
+<button class="btn" onclick="addToCart('Pulsera',10)">Agregar</button>
+</div>
+
+</div>
+
+</section>
+
+<div class="cart-box" id="cartBox">
+
+<h3>Carrito</h3>
+
+<ul id="cartItems"></ul>
+
+<button class="btn" onclick="sendWhatsApp()">Finalizar compra</button>
+
+</div>
+
+<section id="contacto" style="text-align:center;padding:50px">
+
+<h2>Contacto</h2>
+
+<a href="https://instagram.com/Bere.bags_">
+<button class="btn">Instagram</button>
+</a>
+
+</section>
+
+<script>
+
+let cart=[]
+let count=0
+
+function addToCart(name,price){
+
+cart.push(name+" $"+price)
+
+count++
+
+document.getElementById("count").innerText=count
+
+let li=document.createElement("li")
+
+li.innerText=name+" $"+price
+
+document.getElementById("cartItems").appendChild(li)
+
+}
+
+function toggleCart(){
+
+let box=document.getElementById("cartBox")
+
+box.style.display=box.style.display==="block"?"none":"block"
+
+}
+
+function sendWhatsApp(){
+
+let message="Hola quiero comprar:%0A"
+
+cart.forEach(p=>{
+message+=p+"%0A"
+})
+
+window.open("https://wa.me/543564367828?text="+message)
+
+}
+
+</script>
+
+</body>
+</html>
